@@ -18,17 +18,17 @@ export default function App() {
 	const [employee, setEmployee] = useState<Employee | null>(null);
 
 	const getEmployee = () => {
-		fetch("https://randomuser.me/api?nat=en")
+		fetch("http://localhost:3310/api/employees")
 			.then((response) => response.json())
 			.then((data) => {
-				setEmployee(data.results[0]); // Met à jour le profil avec le premier résultat
+				setEmployee(data.results[0]);
+				console.log(data.results[0]);
 			});
 	};
 
-	// Charger un profil initialement au montage
 	useEffect(() => {
-		getEmployee();
-	}, []);
+		console.log("J'ai chargé un nouvel employé:", employee);
+	}, [employee]);
 
 	return (
 		<div className="App">
